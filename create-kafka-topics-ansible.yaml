@@ -1,0 +1,19 @@
+---
+- name: Create Kafka topics on local Kafka broker
+  hosts: localhost  # You can change this to a different group if needed
+  become: true       # Use sudo to run the command if needed
+  tasks:
+    - name: Include the topics file
+      include_vars:
+        file: topics.yml
+
+    - name: Create Kafka topic
+      command: >
+        /usr/local/kafka/bin/kafka-topics.sh --create --topic {{ item.name }} --bootstrap-server localhost:9092 --partitions {{ item.partition }} --replication-factor {{ item.replication }}
+      environment:
+        KAFKA_HOME: /usr/local/kafka  # Set the environment variable if needed
+      args:
+        chdir: /usr/local/kafka  # Change to the Kafka directory if necessary
+      when: item.enable == true  # Only create topic if 'enable' is true
+      with_items: "{{ topics }}"
+

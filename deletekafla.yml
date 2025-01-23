@@ -1,0 +1,20 @@
+---
+- name: Delete all Kafka topics on local Kafka broker
+  hosts: localhost
+  become: true
+  tasks:
+    - name: Get the list of existing Kafka topics
+      command: /usr/local/kafka/bin/kafka-topics.sh --list --bootstrap-server localhost:9092
+      register: existing_topics
+      changed_when: false
+
+    - name: Delete all Kafka topics
+      command: >
+        /usr/local/kafka/bin/kafka-topics.sh --delete --topic {{ item }} --bootstrap-server localhost:9092
+      with_items: "{{ existing_topics.stdout.splitlines() }}"
+      ignore_errors: true  # Ignore errors if a topic doesn't exist
+      environment:
+        KAFKA_HOME: /usr/local/kafka
+      args:
+        chdir: /usr/local/kafka
+

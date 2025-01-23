@@ -1,0 +1,38 @@
+topics:
+  - name: test1
+    partition: 1
+    replication: 1
+    enable: true
+  - name: test2
+    partition: 2
+    replication: 1
+    enable: true
+  - name: test3
+    partition: 1
+    replication: 1
+    enable: true
+  - name: test4
+    partition: 3
+    replication: 1
+    enable: true
+  - name: test5
+    partition: 1
+    replication: 1
+    enable: true
+  - name: test6
+    partition: 2
+    replication: 1
+    enable: true
+  - name: test7
+    partition: 4
+    replication: 1
+    enable: true
+  - name: test8
+    partition: 1
+    replication: 1
+    enable: true
+  - name: test9
+    partition: 3
+    replication: 1
+    enable: true
+
