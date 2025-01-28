@@ -31,7 +31,7 @@ topics:
     partition: 1
     replication: 1
     enable: true
-  - name: test10
+  - name: test11
     partition: 3
     replication: 1
     enable: true
